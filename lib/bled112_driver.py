@@ -12,7 +12,7 @@ class BLED112_driver:
 					self.com = device[0]
 					print self.com
 
-		if (com == None):
+		if (self.com == None):
 			print u'error : "BLED112"の検索に失敗しました。'
 
 			exit()
