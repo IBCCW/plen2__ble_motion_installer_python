@@ -12,7 +12,6 @@ __email__   = "takase@plen.jp"
 
 # 標準ライブラリのインポート
 import sys
-import serial.tools.list_ports
 from argparse import ArgumentParser
 
 # 自作ライブラリのインポート
@@ -24,19 +23,24 @@ import json_purser
 
 
 # メインスレッド
+# ==============================================================================
 def main(args):
 	send_device = None
+	
 	if args.send == "bled112":
 		send_device = BLED112_Driver()
+
 	if args.send == "internal_ble":
 		# send_device = InternalDriver()
 
 	if (send_device == None):
 		print u"error : 送信デバイスの初期化に失敗しました。"
+
 		exit()
 
 
 # アプリケーション・エントリーポイント
+# ==============================================================================
 if __name__ == "__main__":
 	# コマンドラインオプションの定義
 	argument_parser = ArgumentParser()
@@ -47,12 +51,6 @@ if __name__ == "__main__":
 		default = "bled112",
 		help    = u'送信デバイスを"bled112", "internal_ble"から選択します。',
 		metavar = "<SEND DEVICE>"
-	)
-	argument_parser.add_argument(
-		"-r", "--receive",
-		dest    = "receive",
-		help    = u"受信デバイスを指定します。",
-		metavar = "<RECEIVE DEVICE>" 
 	)
 	argument_parser.add_argument(
 		"-f", "--file",
