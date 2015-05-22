@@ -12,11 +12,15 @@ __email__   = "takase@plen.jp"
 
 # 標準ライブラリのインポート
 import sys
+import serial.tools.list_ports
 from argparse import ArgumentParser
 
 # 自作ライブラリのインポート
 sys.path.append("./lib/")
-import BLED112_Driver
+import bled112_driver
+import mfx_purser
+import json_purser
+# import internal_driver
 
 
 # メインスレッド
@@ -28,6 +32,7 @@ def main(args):
 		# send_device = InternalDriver()
 
 	if (send_device == None):
+		print u"error : 送信デバイスの初期化に失敗しました。"
 		exit()
 
 
